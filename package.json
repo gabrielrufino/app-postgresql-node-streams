@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/app-postgresql-node-streams#readme",
   "dependencies": {
+    "dotenv-cli": "^4.0.0",
     "pg": "^8.7.1",
     "pg-query-stream": "^4.2.1"
   }
