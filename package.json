@@ -1,9 +1,13 @@
 {
   "name": "@app/postgresql-node-streams",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Streaming data from PostgreSQL on Node.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
+    "seed": "find .env > /dev/null && dotenv -e .env node src/seed.js",
+    "start": "find .env > /dev/null && dotenv -e .env node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/gabrielrufino/app-postgresql-node-streams/issues"
   },
-  "homepage": "https://github.com/gabrielrufino/app-postgresql-node-streams#readme"
+  "homepage": "https://github.com/gabrielrufino/app-postgresql-node-streams#readme",
+  "dependencies": {
+    "dotenv-cli": "^4.0.0",
+    "faker": "^5.5.3",
+    "pg": "^8.7.1",
+    "pg-query-stream": "^4.2.1"
+  }
 }
