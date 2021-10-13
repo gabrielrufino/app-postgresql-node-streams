@@ -15,11 +15,15 @@ try {
 
   let client
 
+  console.info('[Seed] Connecting to the PostgreSQL')
+
   client = new pg.Client({
     connectionString: `${DATABASE_URL}/postgres`
   })
-
   await client.connect()
+
+  console.info('[Seed] Creating database')
+
   await client.query(`DROP DATABASE IF EXISTS ${DATABASE_NAME}`)
   await client.query(`CREATE DATABASE ${DATABASE_NAME}`)
   await client.end()
@@ -27,8 +31,10 @@ try {
   client = new pg.Client({
     connectionString: `${DATABASE_URL}/${DATABASE_NAME}`
   })
-
   await client.connect()
+
+  console.info('[Seed] Creating table')
+
   await client.query(`
     CREATE TABLE public.${TABLE_NAME} (
       id SERIAL PRIMARY KEY,
@@ -40,6 +46,8 @@ try {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `)
+
+  console.info('[Seed] Seeding database')
 
   await promisify(pipeline)(
     async function *() {
@@ -69,6 +77,8 @@ try {
       }
     }
   )
+
+  console.info('[Seed] Seeding completed')
 
   await client.end()
 } catch (error) {

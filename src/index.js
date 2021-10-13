@@ -13,14 +13,17 @@ try {
     TABLE_NAME
   } = process.env
 
+  console.info('[Stream] Connecting to the database')
+
   const client = new pg.Client({
     connectionString: `${DATABASE_URL}/${DATABASE_NAME}`
   })
-
   await client.connect()
 
   const query = new QueryStream(`SELECT * FROM public.${TABLE_NAME}`)
   const stream = client.query(query)
+
+  console.info('[Stream] Streaming data')
 
   await promisify(pipeline)(
     stream,
@@ -38,6 +41,8 @@ try {
     },
     createWriteStream('dataset.csv')
   )
+
+  console.info('[Stream] Streaming completed')
 
   await client.end()
 } catch (error) {
