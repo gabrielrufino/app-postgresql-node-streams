@@ -12,16 +12,16 @@ try {
     DATABASE_NAME,
     TABLE_NAME
   } = process.env
-  
+
   const client = new pg.Client({
     connectionString: `${DATABASE_URL}/${DATABASE_NAME}`
   })
-  
+
   await client.connect()
-  
+
   const query = new QueryStream(`SELECT * FROM public.${TABLE_NAME}`)
   const stream = client.query(query)
-  
+
   await promisify(pipeline)(
     stream,
     async function *(stream) {
@@ -38,7 +38,7 @@ try {
     },
     createWriteStream('dataset.csv')
   )
-  
+
   await client.end()
 } catch (error) {
   console.error(error.message)

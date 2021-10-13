@@ -12,22 +12,22 @@ try {
     TABLE_NAME,
     TABLE_SIZE
   } = process.env
-  
+
   let client
-  
+
   client = new pg.Client({
     connectionString: `${DATABASE_URL}/postgres`
   })
-  
+
   await client.connect()
   await client.query(`DROP DATABASE IF EXISTS ${DATABASE_NAME}`)
   await client.query(`CREATE DATABASE ${DATABASE_NAME}`)
   await client.end()
-  
+
   client = new pg.Client({
     connectionString: `${DATABASE_URL}/${DATABASE_NAME}`
   })
-  
+
   await client.connect()
   await client.query(`
     CREATE TABLE public.${TABLE_NAME} (
@@ -40,7 +40,7 @@ try {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `)
-  
+
   await promisify(pipeline)(
     async function *() {
       for (const _ of Array(Number(TABLE_SIZE)).fill(null)) {
@@ -69,7 +69,7 @@ try {
       }
     }
   )
-  
+
   await client.end()
 } catch (error) {
   console.error(error.message)
