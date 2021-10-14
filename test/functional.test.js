@@ -1,6 +1,6 @@
 const { describe, beforeAll, it, expect, afterAll } = require('@jest/globals')
 const { execSync } = require('child_process')
-const { existsSync } = require('fs')
+const { existsSync, unlinkSync } = require('fs')
 
 describe('#Functional', () => {
   beforeAll(() => {
@@ -13,6 +13,8 @@ describe('#Functional', () => {
     const TABLE_NAME = 'pets'
     const TABLE_SIZE = '1000'
 
+    existsSync('.env') && unlinkSync('.env')
+    existsSync('dataset.csv') && unlinkSync('dataset.csv')
     execSync(`echo "DATABASE_URL=${DATABASE_URL}" >> .env`)
     execSync(`echo "DATABASE_NAME=${DATABASE_NAME}" >> .env`)
     execSync(`echo "TABLE_NAME=${TABLE_NAME}" >> .env`)
@@ -39,5 +41,7 @@ describe('#Functional', () => {
 
   afterAll(() => {
     execSync('docker container rm -f tests-postgres')
+    existsSync('.env') && unlinkSync('.env')
+    existsSync('dataset.csv') && unlinkSync('dataset.csv')
   })
 })
