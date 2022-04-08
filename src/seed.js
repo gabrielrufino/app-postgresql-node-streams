@@ -1,7 +1,7 @@
 'use strict'
 
 import pg from 'pg'
-import faker from 'faker'
+import faker from '@faker-js/faker'
 import { promisify } from 'util'
 import { pipeline } from 'stream'
 
