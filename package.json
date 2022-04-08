@@ -27,6 +27,7 @@
     "pg-query-stream": "^4.2.1"
   },
   "devDependencies": {
-    "jest": "^27.2.5"
+    "jest": "^27.2.5",
+    "rimraf": "^3.0.2"
   }
 }
