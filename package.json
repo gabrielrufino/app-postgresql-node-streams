@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/gabrielrufino/app-postgresql-node-streams#readme",
   "dependencies": {
-    "@faker-js/faker": "^6.1.2",
-    "dotenv-cli": "^4.0.0",
-    "pg": "^8.7.1",
-    "pg-query-stream": "^4.2.1"
+    "@faker-js/faker": "^6.3.1",
+    "dotenv-cli": "^4.1.1",
+    "pg": "^8.8.0",
+    "pg-query-stream": "^4.2.4"
   },
   "devDependencies": {
-    "jest": "^27.2.5",
+    "jest": "^27.5.1",
     "rimraf": "^3.0.2"
   }
 }
