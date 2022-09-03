@@ -8,7 +8,7 @@
   "scripts": {
     "seed": "find .env > /dev/null && dotenv -e .env node src/seed.js",
     "start": "find .env > /dev/null && dotenv -e .env node src/index.js",
-    "reinstall": "rimraf node_modules && npm ci",
+    "reinstall": "npx rimraf node_modules && npm ci",
     "test": "jest"
   },
   "repository": {
@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/gabrielrufino/app-postgresql-node-streams#readme",
   "dependencies": {
-    "@faker-js/faker": "^6.1.2",
-    "dotenv-cli": "^4.0.0",
-    "pg": "^8.7.1",
-    "pg-query-stream": "^4.2.1"
+    "dotenv-cli": "^6.0.0",
+    "pg": "^8.8.0",
+    "pg-query-stream": "^4.2.4"
   },
   "devDependencies": {
-    "jest": "^27.2.5",
+    "@faker-js/faker": "^7.5.0",
+    "jest": "^29.0.2",
     "rimraf": "^3.0.2"
   }
 }
